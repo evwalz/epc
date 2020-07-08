@@ -2,9 +2,9 @@
 
 **The data:**
 
-1. ECMWF data is provided by ECMWF Center. 
+1. ECMWF data is provided by ECMWF: https://www.ecmwf.int/en/forecasts  
 
-2. Imerg data can be freely downloaded from the datastore of NASA.  
+2. Imerg data can be downloaded from the NASA datastore: https://gpm.nasa.gov/data/directory 
 
 **The folders**
 
