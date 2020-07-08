@@ -1,5 +1,7 @@
 ## Extended probabilistic climatology (EPC)
 
+Details can be found here: http://www.epc.kit-weather.de/
+
 **The data:**
 
 1. ECMWF data is provided by ECMWF: https://www.ecmwf.int/en/forecasts  
