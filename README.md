@@ -1,6 +1,6 @@
 ## Extended probabilistic climatology (EPC)
 
-Details can be found here: http://www.epc.kit-weather.de/
+EPC is a benchmark forecast for precipitation. Details can be found here: http://www.epc.kit-weather.de/
 
 **The data:**
 
