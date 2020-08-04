@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jul  3 13:50:55 2020
-
-@author: walz
-"""
-
 import numpy as np
 import xarray as xr
 import xskillscore as xs
