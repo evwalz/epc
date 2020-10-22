@@ -34,7 +34,7 @@ ensembleindexjan = np.reshape(start2, (19,indx_end))+startposition
 obsjan = np.concatenate((0, year_indx_jan), axis=None)+20
 obsrest = np.concatenate((0, year_indx_rest), axis=None)+20
 
-
+time_stemp = pd.date_range(start = '01/01/2019, end = '12/31/2019')
 year = 18
 for day in range(365):
     if day < 59:
@@ -51,4 +51,6 @@ for day in range(365):
     #both = xr.concat([crps0, crps1], dim="new")
     #crps0 = both.sum(dim="new")
     #crps0 = crps0/365  
-    crps0.to_netcdf("crps19_"+str(window)+"_"+str(day+1)+".nc4")  
+    date = pd.date_range(start = time_stemp[day], end= time_stemp[day])
+    crps_dim = crps0.assign_coords(time=date[day])
+    crps_dim.to_netcdf("crps19_"+str(window)+"_"+str(day+1)+".nc4")  
