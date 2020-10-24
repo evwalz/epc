@@ -3,17 +3,25 @@ import xskillscore as xs
 import numpy as np
 import pandas as pd
 
-# Set window
-window = 2
+###############################################################
 
-indx_end = 2*window+1
+# Set window: 0, 2, 5, 10, 15, 20
+window = 2
 target = "imergall.nc4"
-DS_target_e = xr.open_dataset(target)
+
+###############################################################
+
+# relevant time period for EPC with window sizes between 0 - 20 for years 2001 - 2019
 tttime = pd.date_range(start='12/12/2000', end='01/31/2020')
-DS_target = DS_target_e.sel(time=tttime)
 
 year_indx_jan = np.array([365,  730, 1095, 1461, 1826, 2191, 2556, 2922, 3287, 3652, 4017, 4383, 4748, 5113, 5478, 5844, 6209, 6574])
 year_indx_rest = np.array([365,  730, 1096, 1461, 1826, 2191, 2557, 2922, 3287, 3652,4018, 4383, 4748, 5113, 5479, 5844, 6209, 6574])
+
+indx_end = 2*window+1
+
+DS_target_e = xr.open_dataset(target)
+DS_target = DS_target_e.sel(time=tttime)
+
 
 start = np.arange(0,indx_end ,1)
 for indx in year_indx_rest:
