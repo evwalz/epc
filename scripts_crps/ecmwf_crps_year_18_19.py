@@ -17,7 +17,7 @@ imerg = xr.open_dataset('imerg_regridcon.nc4')
 
 control = control.assign_coords(number = 0.0)
 ensemble = xr.concat([control, perturbed], dim="number")
-ensemble = ensemble*0.001
+ensemble = ensemble*1000
 ensemble.tp.attrs['units'] = 'mm'
 tttime = pd.date_range(start='01/01/20'+str(year_ff), end='12/31/20'+str(year_ff))
 imerg_year = imerg.sel(time = tttime)
