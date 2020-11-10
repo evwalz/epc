@@ -41,7 +41,7 @@ observation = imerg_year.sel(time=day)
 observation = observation.drop('time')
 obs3[:,:] = observation['precipitationCal'].transpose()
 fct3[:,:,:] = ensembleday['tp']
-crpsday0 = xs.crps_ensemble(obs3, fct3, dim="member")
+crpsday0 = xs.crps_ensemble(obs3, fct3, dim=[])
 crpsday0 = crpsday0.assign_coords(time = day)
 # crps values
 for day in tttime[1:]:
@@ -51,7 +51,7 @@ for day in tttime[1:]:
     observation = observation.drop('time')
     obs3[:,:] = observation['precipitationCal'].transpose()
     fct3[:,:,:] = ensembleday['tp']
-    crpsday1 = xs.crps_ensemble(obs3, fct3, dim="member")
+    crpsday1 = xs.crps_ensemble(obs3, fct3, dim=[])
     crpsday1 = crpsday1.assign_coords(time = day)
     crpsday0 = xr.concat([crpsday0, crpsday1], dim='time')
     
