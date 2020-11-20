@@ -17,6 +17,7 @@ target = "imergall.nc4"
 # relevant time period to construct EPC from 2001 to 2018 / 2019
 tttime = pd.date_range(start='12/12/2000', end='01/31/2020')
 
+ensemble_len = (window*2 + 1)*(year_ff-1)
 #######################################################################
 
 if year_ff == 18:
@@ -51,6 +52,20 @@ ensembleindexjan = np.reshape(start2, (year_ff,indx_end))+startposition
 obsjan = np.concatenate((0, year_indx_jan), axis=None)+20
 obsrest = np.concatenate((0, year_indx_rest), axis=None)+20
 
+obs = xr.DataArray(
+       np.random.rand(3600, 800),
+       coords=[DS_target.lon.values, DS_target.lat.values],
+       dims=["lon", "lat"],
+       name='var'
+   )
+fct = xr.DataArray(
+       np.random.rand(ensemble_len, 3600, 800),
+       coords=[np.arange(ensemble_len), DS_target.lon.values, DS_target.lat.values],
+       dims=["member", "lon", "lat"],
+       name='var'
+   )
+
+
 time_stemp = pd.date_range(start = '01/01/20'+str(year_ff), end = '12/31/20'+str(year_ff))
 year = year_ff - 1
 
@@ -65,7 +80,9 @@ for day in range(365):
         ensemblerows = np.delete(ensembleindx, year, 0)
     obssingle = DS_target['precipitationCal'][(obsindx),:,:]
     ensemble =  DS_target['precipitationCal'][ensemblerows.flatten(),:,:]
-    crps0 = xs.crps_ensemble(obssingle, ensemble, dim="time")
+    obs[:,:] = obssingle
+    fct[:,:,:] = ensemble
+    crps0 = xs.crps_ensemble(obs, fct, dim=[])
     #both = xr.concat([crps0, crps1], dim="new")
     #crps0 = both.sum(dim="new")
     #crps0 = crps0/365  

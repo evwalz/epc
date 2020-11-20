@@ -8,7 +8,7 @@ import pandas as pd
 # Set window: 0, 2, 5, 10, 15, 20
 window = 2
 target = "imergall.nc4"
-
+ensemble_len = (window*2+1)*18
 ###############################################################
 
 # relevant time period for EPC with window sizes between 0 - 20 for years 2001 - 2019
@@ -41,6 +41,19 @@ ensembleindexjan = np.reshape(start2, (19,indx_end))+startposition
 obsjan = np.concatenate((0, year_indx_jan), axis=None)+20
 obsrest = np.concatenate((0, year_indx_rest), axis=None)+20
 
+obs = xr.DataArray(
+       np.random.rand(3600, 800),
+       coords=[DS_target.lon.values, DS_target.lat.values],
+       dims=["lon", "lat"],
+       name='var'
+   )
+fct = xr.DataArray(
+       np.random.rand(ensemble_len, 3600, 800),
+       coords=[np.arange(ensemble_len), DS_target.lon.values, DS_target.lat.values],
+       dims=["member", "lon", "lat"],
+       name='var'
+   )
+
 
 for year in range(19):
     obsindx = obsjan[year]
@@ -48,7 +61,9 @@ for year in range(19):
     ensemblerows = np.delete(ensembleindx, year, 0)
     obssingle = DS_target['precipitationCal'][(obsindx),:,:]
     ensemble =  DS_target['precipitationCal'][ensemblerows.flatten(),:,:]
-    crps0 = xs.crps_ensemble(obssingle, ensemble, dim="time")
+    obs[:,:] =  obssingle
+    fct[:,:,:] = ensemble
+    crps0 = xs.crps_ensemble(obs, fct, dim=[])
     for day in range(1,365):
         if day < 59:
             obsindx = obsjan[year] + day
@@ -60,7 +75,9 @@ for year in range(19):
             ensemblerows = np.delete(ensembleindx, year, 0)
         obssingle = DS_target['precipitationCal'][(obsindx),:,:]
         ensemble =  DS_target['precipitationCal'][ensemblerows.flatten(),:,:]
-        crps1 = xs.crps_ensemble(obssingle, ensemble, dim="time")
+        obs[:,:] =  obssingle
+        fct[:,:,:] = ensemble
+        crps1 = xs.crps_ensemble(obs, fct, dim=[])
         both = xr.concat([crps0, crps1], dim="new")
         crps0 = both.sum(dim="new")
     crps0 = crps0/365  
