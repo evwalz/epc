@@ -1,29 +1,13 @@
-## Extended probabilistic climatology (EPC)
+## Download and process data
 
-EPC is a benchmark forecast for precipitation. Details can be found here: http://www.epc.kit-weather.de/
+**ECMWF ensemble**
 
-**The data:**
+1. Download: *ecmwf_down.py* and *ecmwf_down_pf.py*
 
-1. ECMWF data is provided by ECMWF: https://www.ecmwf.int/en/forecasts  
+2. Cut out relevant region (180W, 180E, 40N, 40S) and convert latitude to fit IMERG data format: *process_ecmwf_control.sh* and *process_ecmwf_perturbed.sh*
 
-2. Imerg data can be downloaded from the NASA datastore: https://gpm.nasa.gov/data/directory 
+**IMERG**
 
-**The folders**
-
-1. [scripts_download&prepare_data](scripts_download&prepare_data)
-
-Scripts to download and process ECMWF data and Imerg data.
-
-2. [scripts_crps](scripts_crps)
-
-Python scripts to compute CRPS for EPC forecast and ECMWF ensemble 
-
-3. [script_bernoulligamma](script_bernoulligamma)
-
-Julia script to fit bernoulli gamma distribution to EPC forecast
-
-4. [notebooks_results](notebooks_results)
-
-Python notebooks to replicate plots, tables and statistical figures from the paper
+1. Conservative remapping of IMERG to fit resolution of ECMWF ensemble (0.25x0.25): *process_imerg.sh*
 
 
