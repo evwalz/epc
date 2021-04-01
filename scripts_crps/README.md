@@ -1,12 +1,8 @@
 ## CRPS of ECMWF ensemble and EPC forecast
 
-**ecmwf_crps_year_18_19.py**
+**ecmwf_crps.py**
 
-Compute CRPS for ECMWF ensemble on 2018 and 2019 verified against IMERG. Use regridded version of IMERG which is obatined by applying *process_imerg.sh* from folder [scripts_download&prepare_data](scripts_download&prepare_data).
-
-**epc_crps_year_18_19.py**
-
-Compute CRPS for EPC based on IMERG for 2018 and 2019 verified against IMERG. Use either original grid resolution of IMERG data (0.1x0.1) or regridded version of IMERG (0.25x0.25) as input data. 
+Compute CRPS for ECMWF ensemble per year verified against IMERG. Use regridded version of IMERG which is obatined by applying *process_imerg.sh* from folder [scripts_download&prepare_data](scripts_download&prepare_data).
 
 **bg_crps_year_18_19.py**
 
