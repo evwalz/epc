@@ -12,14 +12,20 @@ Consists of 51 members: 1 control and 50 perturbed members. In the analysis 24-h
 
    Cut out relevant region (180W, 180E, 40N, 40S) and convert latitude to fit IMERG data format. Operation is applied over monthly files seperatly for control and   perturbed forecasts and step size 30 and 6.
 
-3. Combine control and perturbed for one step size (30 or 6) and convert from m to mm: *combine_ensemble.py*
+3. **combine_ensemble.py**
  
-4. Compute difference between ensemble with step 30 and step 6: *subtract_ensemble*
+    Combine control and perturbed for one step size (30 or 6) and convert from m to mm.
+ 
+4. **subtract_ensemble**
+ 
+     Compute difference between ensemble with step 30 and step 6.
 
 **IMERG**
 
 1. Create IMERG data with accumulated precipitation ranging from 06:00 - 06:00 UTC 
 
-2. Conservative remapping of IMERG to fit resolution of ECMWF ensemble (0.25x0.25): *process_imerg.sh*
+2. **process_imerg.sh**
+ 
+    Conservative remapping of IMERG to fit resolution of ECMWF ensemble (0.25x0.25)
 
 
