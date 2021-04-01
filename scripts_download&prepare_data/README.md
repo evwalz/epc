@@ -12,6 +12,8 @@ Consists of 51 members: 1 control and 50 perturbed members. In the analysis 24-h
 
 **IMERG**
 
-1. Conservative remapping of IMERG to fit resolution of ECMWF ensemble (0.25x0.25): *process_imerg.sh*
+1. Create IMERG data with accumulated precipitation ranging from 06:00 - 06:00 UTC 
+
+2. Conservative remapping of IMERG to fit resolution of ECMWF ensemble (0.25x0.25): *process_imerg.sh*
 
 
