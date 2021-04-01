@@ -1,13 +1,15 @@
 from ecmwfapi import ECMWFService
+import pandas as pd
 
 server = ECMWFService("mars")
   
-dates = ['2018-12-31/to/2019-01-30', '2019-01-31/to/2019-02-27', '2019-02-28/to/2019-03-30', '2019-03-31/to/2019-04-29', '2019-04-30/to/2019-05-30', '2019-05-31/to/2019-06-29', '2019-06-30/to/2019-07-30',
-             '2019-07-31/to/2019-08-30', '2019-08-31/to/2019-09-29', '2019-09-30/to/2019-10-30', '2019-10-31/to/2019-11-29', '2019-11-30/to/2019-12-30']
-
-for date in dates:
+date_end = pd.date_range(start='2012-01-01', end='2020-01-01', freq='M')
+date_start = pd.date_range(start='2012-01-01', end='2019-12-02', freq='MS')
+    
+for x, y in zip(date_start, date_end):
+    date = x.strftime('%Y-%m-%d') +'/to/'+y.strftime('%Y-%m-%d')
     datestemp = date[14:21]
-    target = 'Prtloperation24_%s.nc' % (datestemp)
+    target = 'Prtl30_%s.nc' % (datestemp)
     server.execute({
         "class"   : "od",
         "stream"  : "enfo",
@@ -16,7 +18,7 @@ for date in dates:
         "levtype" : "sfc",
         "number" : "1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50",
         "time"    : "00",
-        "step"    : "24",
+        "step"    : "30",
         "date"    : date,
         "param"   : "228.128",
         "grid"    : "0.25/0.25",
