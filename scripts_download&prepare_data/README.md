@@ -10,7 +10,7 @@ Consists of 51 members: 1 control and 50 perturbed members. In the analysis 24-h
 
 3. Combine control and perturbed for one step size (30 or 6) and convert from m to mm: *combine_ensemble.py*
  
-4. Compute difference between ensemble with step 30 and step 6: and *subtract_ensemble*
+4. Compute difference between ensemble with step 30 and step 6: *subtract_ensemble*
 
 **IMERG**
 
