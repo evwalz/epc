@@ -1,14 +1,15 @@
 from ecmwfapi import ECMWFService
+import pandas as pd
 
 server = ECMWFService("mars")
   
-dates = ['2018-12-31/to/2019-01-30', '2019-01-31/to/2019-02-27', '2019-02-28/to/2019-03-30', '2019-03-31/to/2019-04-29', '2019-04-30/to/2019-05-30', '2019-05-31/to/2019-06-29', '2019-06-30/to/2019-07-30',
-             '2019-07-31/to/2019-08-30', '2019-08-31/to/2019-09-29', '2019-09-30/to/2019-10-30', '2019-10-31/to/2019-11-29', '2019-11-30/to/2019-12-30']
+date_end = pd.date_range(start='2012-01-01', end='2020-01-01', freq='M')
+date_start = pd.date_range(start='2012-01-01', end='2019-12-02', freq='MS')
 
-
-for date in dates:
+for x, y in zip(date_start, date_end):
+    date = x.strftime('%Y-%m-%d') +'/to/'+y.strftime('%Y-%m-%d')
     datestemp = date[14:21]
-    target = 'operational24_%s.nc' % (datestemp)
+    target = 'Prtl6_%s.nc' % (datestemp)
     server.execute({
         "class"   : "od",
         "stream"  : "enfo",
@@ -16,7 +17,7 @@ for date in dates:
         "type"    : "cf",
         "levtype" : "sfc",
         "time"    : "00",
-        "step"    : "24",
+        "step"    : "6",
         "date"    : date,
         "param"   : "228.128",
         "grid"    : "0.25/0.25",
