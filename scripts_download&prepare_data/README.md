@@ -6,9 +6,9 @@ Consists of 51 members: 1 control and 50 perturbed members. In the analysis 24-h
 
 1. Download ensemble with: *ecmwf_down.py* and *ecmwf_down_pf.py*. Successively use 6 and 30 for attribute "step" in the download script. 
 
-2. Cut out relevant region (180W, 180E, 40N, 40S) and convert latitude to fit IMERG data format: *process_ecmwf_control.sh* and *process_ecmwf_perturbed.sh*
+2. Cut out relevant region (180W, 180E, 40N, 40S) and convert latitude to fit IMERG data format: *process_ecmwf.sh*
 
-3. Compute difference between ensemble with step 30 and step 6 
+3. Compute difference between ensemble with step 30 and step 6 and convert unit from m in mm: *combine_ensemble.py*
 
 **IMERG**
 
