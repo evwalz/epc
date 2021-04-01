@@ -9,7 +9,7 @@ date_start = pd.date_range(start='2012-01-01', end='2019-12-02', freq='MS')
 for x, y in zip(date_start, date_end):
     date = x.strftime('%Y-%m-%d') +'/to/'+y.strftime('%Y-%m-%d')
     datestemp = date[14:21]
-    target = 'Prtl6_%s.nc' % (datestemp)
+    target = 'Ctrl6_%s.nc' % (datestemp)
     server.execute({
         "class"   : "od",
         "stream"  : "enfo",
