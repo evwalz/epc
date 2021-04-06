@@ -25,7 +25,8 @@ DS_target = xr.open_dataset("imerg66_regridcon_update"+str(year)+".nc")
 lon_target = DS_target.lon.values
 lat_target = DS_target.lat.values
 
-
+ensemble_ecmwf = ensemble_ecmwf.sel(latitude = lat_target)
+ensemble_ecmwf = ensemble_ecmwf.sel(longitude = lon_target)
 ensemble_len = 51
 
 obs = xr.DataArray(
