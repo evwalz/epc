@@ -29,6 +29,5 @@ Consists of 51 members: 1 control and 50 perturbed members. In the analysis 24-h
 
 2. **IMERG_06_06**
     
-    Create IMERG data with accumulated precipitation ranging from 06:00 - 06:00 UTC using CDO and NCL
-
+    Create IMERG data with accumulated precipitation ranging from 06:00 - 06:00 UTC using CDO and NCL. Successively run the 4 scripts with number 01 up to 04.
 
